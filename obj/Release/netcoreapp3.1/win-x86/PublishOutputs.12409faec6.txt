@@ -1,0 +1,2 @@
+D:\Visual_Studio\tarkovusdandeurcalcolator\tarkovusdandeurcalcolator\bin\Release\netcoreapp3.1\publish\tarkovusdandeurcalcolator.pdb
+D:\Visual_Studio\tarkovusdandeurcalcolator\tarkovusdandeurcalcolator\bin\Release\netcoreapp3.1\publish\tarkovusdandeurcalcolator.exe
