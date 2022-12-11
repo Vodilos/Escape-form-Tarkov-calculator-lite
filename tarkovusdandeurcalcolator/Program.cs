@@ -1,16 +1,16 @@
-﻿using System;
+using System;
 
 namespace tarkovusdandeurcalcolator
 {
     class Program
     {
+        private int kurzrubusd = 113;
         // Made by Vodilos_ (https://vodilos.9e.cz ; https://github.com/Vodilos)
         static void Main(string[] args)
         {
             // Vykoná hlavní program
             Menu();
         }
-
         static void Menu()
         {
             // Proměné
@@ -54,6 +54,7 @@ namespace tarkovusdandeurcalcolator
         // Rubtousd kalkulace
         static void Rubtousd()
         {
+            Program kurz = new Program();
             // Proměná
             double rubtousd;
             // Zeptání se kolik usd to rub
@@ -70,9 +71,9 @@ namespace tarkovusdandeurcalcolator
                 throw;
             }
             // Kalkulace as good
-            int rubtousd2 = Convert.ToInt32(rubtousd) / 112;
-            double rubtousd3 = rubtousd / 112 - rubtousd2 - 1;
-            double rubtousd4 = rubtousd3 * 112;
+            int rubtousd2 = Convert.ToInt32(rubtousd) / kurz.kurzrubusd;
+            double rubtousd3 = rubtousd / kurz.kurzrubusd - rubtousd2 - 1;
+            double rubtousd4 = rubtousd3 * kurz.kurzrubusd;
             int rubtousd5 = Convert.ToInt32(rubtousd4) * 2;
             int rubtousd6 = Math.Abs(rubtousd5) / 2;
             // Vypsání vyseldků
@@ -90,6 +91,7 @@ namespace tarkovusdandeurcalcolator
         {
             // Poroměná
             int usdtorub;
+            Program kurz = new Program();
             // Ptaní se kolik chce usd to rub
             Console.Clear();
             Console.WriteLine("Write how many USD you want to convert to RUB");
@@ -104,7 +106,7 @@ namespace tarkovusdandeurcalcolator
             throw;
             }
             // Výsledek + kaluklace
-            Console.WriteLine(usdtorub * 112 + " RUB");
+            Console.WriteLine(usdtorub * kurz.kurzrubusd + " RUB");
 
             // Navrácení do menu
             Console.WriteLine("\nType anything to retrun to the menu.");
