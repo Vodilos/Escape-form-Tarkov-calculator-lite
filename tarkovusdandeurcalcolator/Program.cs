@@ -7,9 +7,15 @@ namespace tarkovusdandeurcalcolator
     class Program
     {
         private static int kurzrubusd;
+        private static string pathProgram;
+        private static string kurzInt;
+        private static string path;
         // Made by Vodilos_ (https://vodilos.9e.cz ; https://github.com/Vodilos)
         static void Main(string[] args)
         {
+            pathProgram = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            kurzInt = @"\TarkovCalculator\kurz.int";
+            path = pathProgram + kurzInt;
             // Vykoná hlavní program
             Kurz();
         }
@@ -17,12 +23,19 @@ namespace tarkovusdandeurcalcolator
         {
             try
             {
-                string test = File.ReadAllText(@"C:\Program Files (x86)\Vodilos\TarkovCalculator\kurz.int");
-                kurzrubusd = Convert.ToInt32(test);
+                string kurzread = File.ReadAllText(path);
+                kurzrubusd = Convert.ToInt32(kurzread);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                kurzrubusd = 403;
+
             }
             catch (Exception)
             {
                 kurzrubusd = 404;
+                Console.WriteLine("Someting went worng");
+                Thread.Sleep(2000);
             }
             Menu();
         }
@@ -76,15 +89,22 @@ namespace tarkovusdandeurcalcolator
             Console.Clear();
             Console.WriteLine("Enter new exchange rate:");
             Console.WriteLine("Use only numbers");
-            // Pořád neukláda aby si user mohl changenout exchange rate
             try
             {
                 int novyExchange = Convert.ToInt32(Console.ReadLine());
-                using (StreamWriter sw = File.CreateText(@"C:\Program Files (x86)\Vodilos\TarkovCalculator\kurz.int"))
+                using (StreamWriter sw = File.CreateText(path))
                 {
-                    sw.Flush();
                     sw.WriteLine(novyExchange);
+                    sw.Close();
                 }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine("Application doesn't have right permission try to run the application as admin.");
+                Thread.Sleep(2000);
+                Console.WriteLine("Going back to menu...");
+                Thread.Sleep(1500);
+                Menu();
             }
             catch (Exception)
             {
